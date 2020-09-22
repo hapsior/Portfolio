@@ -6,27 +6,45 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            var x = Console.ReadKey();
-
-            switch (x.KeyChar)
-            {
-                case '1':
-                Console.WriteLine("GOOD");
-                    break;
-                default:
-                    Console.WriteLine("Zle");
-                    break;
-            }
 
             Console.WriteLine("Witaj w grze w kolko i krzyzyk");
-            Rules rules = new Rules();
-            rules.FillArray();
-            rules.DisplayTable();
-            rules.Start();
-            rules.TurnO();
-            rules.DisplayTable();
-            Bot.BotTurnX(rules);
-            rules.DisplayTable();
+
+            while (true)
+            {
+
+                Rules rules = new Rules();
+
+                rules.FillArray();
+                rules.Start();
+                var pickSide = Console.ReadKey();
+
+                switch (pickSide.KeyChar)
+                {
+                    case 'o':
+                        rules.TurnO();
+                        Bot.BotTurnX(rules);
+                        rules.TurnO();
+                        Bot.BotTurnX(rules);
+                        rules.TurnO();
+                        Bot.BotTurnX(rules);
+                        //rules.Result
+                        break;
+
+                    case 'x':
+                        Bot.BotTurnO(rules);
+                        rules.TurnX();
+                        Bot.BotTurnO(rules);
+                        rules.TurnX();
+                        Bot.BotTurnO(rules);
+                        rules.TurnX();
+                        break;
+                    default:
+                        Console.WriteLine("Nie wybrales strony!");
+                        break;
+
+
+                }
+            }
         }
     }
 }

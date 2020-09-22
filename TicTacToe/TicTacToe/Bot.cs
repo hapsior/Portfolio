@@ -12,13 +12,27 @@ namespace TicTacToe
         Random random = new Random();
 
             int next=random.Next(0,9);
-            if(rules.Array[next].Equals("O")||rules.Array[next].Equals("X"))
 
-            while (!rules.Array[next].Equals("O") || rules.Array[next].Equals("X"));
+            if (rules.Array[next]=="O" || rules.Array[next]=="X")
             {
                next= random.Next(0, 9);
             }
             rules.Array[next] = "X";
+            rules.DisplayTable();
+        }
+
+        public static void BotTurnO(Rules rules)
+        {
+            Random random = new Random();
+
+            int next = random.Next(0, 9);
+
+            if (rules.Array[next] == "O" || rules.Array[next] == "X")
+            {
+                next = random.Next(0, 9);
+            }
+            rules.Array[next] = "O";
+            rules.DisplayTable();
         }
     }
 }
